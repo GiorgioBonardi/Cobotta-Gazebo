@@ -1,0 +1,33 @@
+.joint {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    width: 150px; 
+    display: inline-block; 
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.controls button {
+    width: 25px;
+    height: 25px;
+    margin: 0 5px;
+    font-size: 16px;
+}
+
+.controls input[type="range"] {
+    width: 80px;  
+    margin: 0 5px;
+}
+
+.value-box input {
+    width: 40px;
+    text-align: center;
+    margin-top: 10px;
+}
