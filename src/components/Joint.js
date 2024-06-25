@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 
 import './Joint.css';
 
-const Joint = ({ name, min, max }) => {
-    const [value, setValue] = useState((min + max) / 2);
+const Joint = ({ name, min, max, value, _onChangeGlobal }) => {
+    const [_value, setValue] = useState(value);
 
     const increment = () => {
-        setValue(prevValue => Math.min(prevValue + 1, max));
+        const newValue = Math.min(_value + 1, max);
+        setValue(newValue);
+        _onChangeGlobal({ target: { name, value: newValue } });
     };
 
     const decrement = () => {
-        setValue(prevValue => Math.max(prevValue - 1, min));
+        const newValue = Math.max(_value - 1, min);
+        setValue(newValue);
+        _onChangeGlobal({ target: { name, value: newValue } });
     };
 
     const handleChange = (event) => {
+        _onChangeGlobal({ target: { name, value: event.target.value } });
         setValue(Number(event.target.value));
     };
 
@@ -26,13 +31,13 @@ const Joint = ({ name, min, max }) => {
                     type="range" 
                     min={min} 
                     max={max} 
-                    value={value} 
+                    value={_value} 
                     onChange={handleChange} 
                 />
                 <button onClick={increment}>+</button>
             </div>
             <div className="value-box">
-                <input type="number" value={value} readOnly />
+                <input type="number" value={_value} readOnly />
             </div>
         </div>
     );
